@@ -1,5 +1,4 @@
-import "./styles/index.css";
-const App = () => {
+const Router = () => {
     return (
     <div className="App">
         
@@ -7,4 +6,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Router;

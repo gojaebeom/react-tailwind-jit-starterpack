@@ -6,17 +6,7 @@ module.exports = {
     ],
     theme: {
         extend:{
-            fontFamily: {
-                'neob': ['NeoB'],
-                'neoeb': ['NeoEB'],
-                'neoh': ['NeoH'],
-                'neol': ['NeoL'],
-                'neom': ['NeoM'],
-                'neor': ['NeoR'],
-                'neosb': ['NeoSB'],
-                'neot': ['NeoT'],
-                'neoul': ['NeoUL'] 
-            },
+
         },
         screens:{
             'sm': '640px',

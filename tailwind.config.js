@@ -6,7 +6,15 @@ module.exports = {
     ],
     theme: {
         extend:{
-
+            fontFamily: {
+                'noto-regular': ['noto-regular'],
+                'noto-bold': ['noto-bold'],
+                'noto-black': ['noto-black'],
+                'noto-thin': ['noto-thin'],
+                'noto-light': ['noto-light'],
+                'noto-medium': ['noto-medium'],
+                'pacifico': ['pacifico'],
+            },
         },
         screens:{
             'sm': '640px',

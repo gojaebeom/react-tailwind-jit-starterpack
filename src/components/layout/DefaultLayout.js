@@ -14,13 +14,14 @@ function DefaultLayout({ children }) {
 
   return (
     <div className="top-0 left-0 fixed flex w-full h-full bg-red-300  font-noto-regular text-[#424242]">
-      <aside className="absolute left-0 md:static w-[380px] h-full flex">
-        <div className="flex flex-col items-center w-[60px] md:w-[80px] h-full p-2">
+      <aside className="absolute left-0 w-full sm:static sm:w-[380px] h-full flex">
+        <div className="flex flex-col items-center w-[60px] md:w-[80px] h-full p-2 bg-red-300">
           <DefaultLayoutMenu menus={calendars} />
         </div>
-        <div className="relative w-[300px] h-full bg-white">
+        <div className="relative w-full sm:w-[300px] h-full bg-white border-r">
           <div className="flex items-center justify-between w-full h-[50px] border-b p-2">
             제목
+            <i className="fas fa-times"></i>
           </div>
           <div className="w-full h-full p-2">내용</div>
           <div className="absolute bottom-0 left-0 flex items-center justify-between px-2 w-full h-[50px] border-t">
@@ -39,7 +40,7 @@ function DefaultLayout({ children }) {
           </div>
         </div>
       </aside>
-      <section className="w-full h-full bg-white border-l">
+      <section className="w-full h-full bg-white">
         <div className="flex items-center justify-between w-full h-[50px] border-b px-4">
           <i className="cursor-pointer fas fa-hamburger"></i>
           <i className="cursor-pointer fas fa-ellipsis-h"></i>

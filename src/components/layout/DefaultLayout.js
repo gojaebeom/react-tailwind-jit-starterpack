@@ -31,10 +31,10 @@ function DefaultLayout({ children }) {
   }
 
   return (
-    <div className="top-0 left-0 fixed flex w-full h-full bg-red-300  font-noto-regular text-[#424242]">
+    <div className="top-0 left-0 fixed flex w-full h-full bg-white font-noto-regular text-[#424242]">
       {leftAside && (
         <aside className="absolute left-0 w-full sm:static sm:w-[380px] h-full flex transition duration-100">
-          <div className="flex flex-col items-center w-[60px] md:w-[80px] h-full p-2 bg-red-300">
+          <div className="flex flex-col items-center w-[60px] md:w-[80px] h-full p-2 bg-gradient-to-b from-blue-400 to-blue-300">
             <div
               className="relative flex items-center justify-center w-12 h-12 mt-2 mb-4 rounded-full cursor-pointer bg-gray-50"
               title="초대 알림"
@@ -77,7 +77,7 @@ function DefaultLayout({ children }) {
         </aside>
       )}
       <section className="w-full h-full bg-white">
-        <div className="flex items-center justify-between w-full h-[50px] border-b px-4">
+        <div className="flex items-center justify-between w-full h-[50px] border-b px-4 ">
           <button onClick={() => setLeftAside(!leftAside)}>
             <i className="cursor-pointer fas fa-hamburger hover:text-indigo-400"></i>
           </button>

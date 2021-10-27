@@ -1,10 +1,10 @@
 import { useUser } from '../../states/user'
 
 function UserLogoutButton() {
-  const { logout } = useUser()
+  const { logoutHandler } = useUser()
   return (
-    <button onClick={logout} className="focus:outline-none">
-      <i className="mx-1 fas fa-sign-out-alt"></i>
+    <button onClick={logoutHandler} className="focus:outline-none">
+      <i className="mx-1 fas fa-sign-out-alt hover:text-indigo-400"></i>
     </button>
   )
 }

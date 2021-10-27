@@ -2,29 +2,32 @@ import { atom, useRecoilState } from 'recoil'
 
 export const calendarsState = atom({
   key: 'calendarsState',
-  default: [
-    {
-      id: 1,
-      title: 'hello',
-      thumbnailPreview: '',
-    },
-    {
-      id: 2,
-      title: 'world',
-      thumbnailPreview: '',
-    },
-    {
-      id: 3,
-      title: 'hoho',
-      thumbnailPreview: '',
-    },
-  ],
+  default: [],
+})
+
+export const calendarDetailState = atom({
+  key: 'calendarDetailState',
+  default: {
+    id: '',
+    userId: '',
+    name: '',
+    thumbnailPreview: '',
+    isPrivate: 0,
+    isDefault: 0,
+    members: [],
+  },
 })
 
 export const useCalendars = () => {
   const [calendars, setCalendars] = useRecoilState(calendarsState)
+  const [calendarDetail, setCalendarDetail] = useRecoilState(
+    calendarDetailState,
+  )
 
   return {
     calendars,
+    setCalendars,
+    calendarDetail,
+    setCalendarDetail,
   }
 }

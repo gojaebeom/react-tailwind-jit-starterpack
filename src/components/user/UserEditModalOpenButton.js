@@ -1,10 +1,10 @@
 import { useUserEditModal } from '../../states/user'
 
 function UserEditModalOpenButton() {
-  const { open } = useUserEditModal()
+  const { openHandler } = useUserEditModal()
   return (
-    <button onClick={open} className="focus:outline-none">
-      <i className="mx-2 fas fa-cog"></i>
+    <button onClick={openHandler} className="focus:outline-none">
+      <i className="mx-2 fas fa-cog hover:text-indigo-400"></i>
     </button>
   )
 }

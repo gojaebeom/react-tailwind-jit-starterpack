@@ -1,7 +1,7 @@
 import { useUserEditModal } from '../../states/user'
 
 function UserEditModal() {
-  const { userEditModal, close } = useUserEditModal()
+  const { userEditModal, closeHandler } = useUserEditModal()
 
   return (
     userEditModal.open && (
@@ -58,7 +58,7 @@ function UserEditModal() {
           <div className="flex justify-between w-full">
             <button
               className="px-5 py-2 mt-5 rounded-sm font-noto-medium"
-              onClick={close}
+              onClick={closeHandler}
             >
               취소
             </button>

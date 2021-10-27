@@ -9,6 +9,7 @@ import {
   useSetRecoilState,
 } from 'recoil'
 import apiScaffold from '../customs/api'
+import { calendarDetailState, calendarsState } from './calendar'
 import { toastState } from './toast'
 
 const userState = atom({
@@ -34,7 +35,10 @@ const userEditModalState = atom({
 export const useUserRefresh = () => {
   const setToast = useSetRecoilState(toastState)
   const [user, setUser] = useRecoilState(userState)
+  const setCalendars = useSetRecoilState(calendarsState)
+  const setCalendarDetail = useSetRecoilState(calendarDetailState)
   const history = useHistory()
+
   useEffect(() => {
     const pathname = history.location.pathname
     if (pathname !== '/login' && pathname !== '/auth/kakao') silentRefresh()
@@ -59,7 +63,12 @@ export const useUserRefresh = () => {
       (err) =>
         setToast({ open: true, message: err, type: 'ERROR', second: 2000 }),
     )
+    console.debug(userRes)
     setUser({ ...user, ...userRes.data.user })
+    if (userRes.data.calendars.length !== 0) {
+      setCalendars([...userRes.data.calendars])
+      setCalendarDetail({ ...userRes.data.calendars[0] })
+    }
   }
 }
 
@@ -67,7 +76,7 @@ export const useUser = () => {
   const [user, setUser] = useRecoilState(userState)
   const setToast = useSetRecoilState(toastState)
 
-  const logout = async () => {
+  const logoutHandler = async () => {
     // eslint-disable-next-line no-restricted-globals
     const result = confirm('로그아웃 하시겠습니까?')
     if (!result) return
@@ -84,23 +93,23 @@ export const useUser = () => {
     window.location.href = '/login'
   }
 
-  return { user, logout }
+  return { user, logoutHandler }
 }
 
 export const useUserEditModal = () => {
   const [userEditModal, setUserEditModal] = useRecoilState(userEditModalState)
   const userEditModalReset = useResetRecoilState(userEditModalState)
 
-  const open = () => {
+  const openHandler = () => {
     console.debug('user edit modal is open')
     setUserEditModal({ ...userEditModal, open: true })
   }
 
-  const close = () => userEditModalReset()
+  const closeHandler = () => userEditModalReset()
 
   return {
     userEditModal,
-    open,
-    close,
+    openHandler,
+    closeHandler,
   }
 }

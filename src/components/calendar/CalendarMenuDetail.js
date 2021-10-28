@@ -9,7 +9,7 @@ function CalendarDetailMenu({ setLeftAside }) {
   const { user } = useUser()
   const { calendarDetail } = useCalendars()
   return (
-    <div className="relative w-full sm:w-[300px] h-full bg-white sm:border-r">
+    <div className="relative w-full sm:w-[300px] sm:max-w-[300px] h-full bg-white sm:border-r">
       <div className="flex items-center justify-between w-full h-[50px] border-b px-3">
         {calendarDetail.name}
         <div>

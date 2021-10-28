@@ -12,7 +12,7 @@ import apiScaffold from '../customs/api'
 import { calendarDetailState, calendarsState } from './calendar'
 import { toastState } from './toast'
 
-const userState = atom({
+export const userState = atom({
   key: 'userState',
   default: {
     id: '',
@@ -25,9 +25,14 @@ const userState = atom({
   },
 })
 
-const userEditModalState = atom({
-  key: 'userEditModalState',
+export const userEditState = atom({
+  key: 'userEditState',
   default: {
+    id: '',
+    email: '',
+    userCode: '',
+    nickname: '',
+    profilePreviewImg: '',
     open: false,
   },
 })
@@ -96,19 +101,26 @@ export const useUser = () => {
   return { user, logoutHandler }
 }
 
-export const useUserEditModal = () => {
-  const [userEditModal, setUserEditModal] = useRecoilState(userEditModalState)
-  const userEditModalReset = useResetRecoilState(userEditModalState)
+export const useUserEdit = () => {
+  const user = useRecoilValue(userState)
+  const [userEdit, setUserEdit] = useRecoilState(userEditState)
+  const userEditReset = useResetRecoilState(userEditState)
 
   const openHandler = () => {
     console.debug('user edit modal is open')
-    setUserEditModal({ ...userEditModal, open: true })
+    setUserEdit({
+      ...userEdit,
+      id: user.id,
+      userCode: user.userCode,
+      nickname: user.nickname,
+      open: true,
+    })
   }
 
-  const closeHandler = () => userEditModalReset()
+  const closeHandler = () => userEditReset()
 
   return {
-    userEditModal,
+    userEdit,
     openHandler,
     closeHandler,
   }

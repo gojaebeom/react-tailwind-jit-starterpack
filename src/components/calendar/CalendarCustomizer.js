@@ -1,9 +1,8 @@
 import { useCalendars } from '../../states/calendar'
 
 function CalendarCustomizer({ days }) {
-  const { contextMenu, calendarDetail, today, changeTdColor } = useCalendars()
+  const { contextMenu, calendarDetail, changeTdColor } = useCalendars()
   return (
-    days.format('MM') === today.format('MM') &&
     contextMenu.isOpen &&
     contextMenu.matchedCalendarId === calendarDetail.id &&
     contextMenu.matchedDate === days.format('YYYYMMDD') && (

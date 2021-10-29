@@ -5,7 +5,7 @@ function UserEditModal() {
 
   return (
     userEdit.open && (
-      <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-gray-50 bg-opacity-80">
+      <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
         <div className="flex flex-col items-center p-5 bg-white rounded-sm w-full h-full sm:w-[350px] sm:h-auto overflow-hidden border">
           <p className="text-2xl font-noto-medium">회원 정보 수정</p>
           <p className="text-sm">{}</p>

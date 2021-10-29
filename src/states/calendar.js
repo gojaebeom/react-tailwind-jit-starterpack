@@ -1,6 +1,9 @@
 import moment from 'moment'
-import { atom, useRecoilState, useRecoilValue } from 'recoil'
+import { useHistory } from 'react-router'
+import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import apiScaffold from '../customs/api'
+import readImgFile from '../customs/readImgFile'
+import { toastState } from './toast'
 import { userState } from './user'
 
 export const calendarsState = atom({
@@ -61,6 +64,7 @@ export const useCalendars = () => {
     calendarDetailState,
   )
   const [today, setToday] = useRecoilState(todayState)
+  const history = useHistory()
 
   const getCalendarCustomizes = async () => {
     const res = await apiScaffold({
@@ -68,6 +72,7 @@ export const useCalendars = () => {
       url: `/calendar-customizes?userId=${user.id}&calendarId=${calendarDetail.id}`,
     })
     setCustomizes(res.data)
+    setContextMenu({ ...contextMenu, isOpen: false })
     console.debug(res)
   }
 
@@ -88,6 +93,16 @@ export const useCalendars = () => {
     await getCalendarCustomizes()
   }
 
+  const calenarMenuChangeHandler = (c) => {
+    console.debug(calendarDetail)
+    for (let calendar of calendars) {
+      if (calendar.id === c.id) {
+        setCalendarDetail({ ...calendar })
+      }
+    }
+    history.push('/')
+  }
+
   return {
     calendars,
     setCalendars,
@@ -101,17 +116,75 @@ export const useCalendars = () => {
     getCalendarCustomizes,
     today,
     setToday,
+    calenarMenuChangeHandler,
   }
 }
 
 export const useCalendarStore = () => {
+  const user = useRecoilValue(userState)
   const [calendarStore, setCalendarStore] = useRecoilState(calendarStoreState)
+  const setCalendars = useSetRecoilState(calendarsState)
+  const setToast = useSetRecoilState(toastState)
 
   const calendarStoreToggleHandler = () =>
     setCalendarStore({ ...calendarStoreState, isOpen: !calendarStore.isOpen })
 
+  const imageChangeHandler = (e) => {
+    readImgFile(e, (event, file) => {
+      setCalendarStore({
+        ...calendarStore,
+        thumbnail: event.target.result,
+        thumbnailFile: file,
+      })
+    })
+  }
+
+  const inputChangeHandler = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+
+    console.debug(name)
+    console.debug(value)
+
+    if (name === 'isPrivate') {
+      setCalendarStore({
+        ...calendarStore,
+        isPrivate: calendarStore.isPrivate === 0 ? 1 : 0,
+      })
+    } else if (name === 'name') {
+      setCalendarStore({ ...calendarStore, name: value })
+    }
+  }
+
+  const submitHandler = async () => {
+    if (!calendarStore.name)
+      return setToast({
+        open: true,
+        message: '캘린더 이름은 필수값입니다!',
+        type: 'WARNING',
+        second: 2000,
+      })
+
+    const formData = new FormData()
+    formData.append('userId', user.id)
+    if (calendarStore.name) formData.append('name', calendarStore.name)
+    if (calendarStore.thumbnail)
+      formData.append('thumbnail', calendarStore.thumbnailFile)
+    formData.append('isPrivate', calendarStore.isPrivate)
+
+    const res = await apiScaffold({
+      method: 'post',
+      url: '/calendars',
+      data: formData,
+    })
+    setCalendars([...res.data])
+  }
+
   return {
     calendarStore,
-    calendarStoreToggleHandler
+    calendarStoreToggleHandler,
+    imageChangeHandler,
+    inputChangeHandler,
+    submitHandler,
   }
 }

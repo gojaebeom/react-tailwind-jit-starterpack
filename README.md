@@ -16,3 +16,8 @@ npm install
 npm run watch
 npm start
 ```
+
+## StartPack Default Option ✨
+- Tailwind Jit 환경 구성 
+- PWA 환경 구성
+  - https만 연결하면 됨

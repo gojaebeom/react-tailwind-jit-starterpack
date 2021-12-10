@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
-import './styles/index.css'
+import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
+import './assets/styles/index.css'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </BrowserRouter>,
   document.getElementById('root'),
 )
 

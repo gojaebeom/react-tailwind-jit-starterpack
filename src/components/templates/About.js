@@ -1,5 +1,11 @@
+import DefaultLayout from '../layouts/DefaultLayout'
+
 function About() {
-  return <div>자세히</div>
+  return (
+    <DefaultLayout>
+      <h1 className="text-3xl">어바웃</h1>
+    </DefaultLayout>
+  )
 }
 
 export default About

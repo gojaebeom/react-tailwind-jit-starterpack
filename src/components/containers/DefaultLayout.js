@@ -1,4 +1,4 @@
-import Header from '../widgets/statelessWidgets/Header'
+import Header from 'components/containers/Header'
 
 function DefaultLayout(props) {
   return (

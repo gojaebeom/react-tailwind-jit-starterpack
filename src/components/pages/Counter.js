@@ -1,5 +1,5 @@
-import DefaultLayout from '../layouts/DefaultLayout'
-import CounterWidget from '../widgets/statefulWidgets/CounterWidget'
+import DefaultLayout from 'components/containers/DefaultLayout'
+import CounterWidget from 'components/containers/CounterWidget'
 
 function Counter() {
   return (

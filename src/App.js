@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
-import About from './components/templates/About'
-import Counter from './components/templates/Counter'
-import Home from './components/templates/Home'
+import About from 'components/pages/About'
+import Counter from 'components/pages/Counter'
+import Home from 'components/pages/Home'
 
 function App() {
   const route = useRoutes([

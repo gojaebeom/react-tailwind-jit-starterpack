@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { counterState } from 'states/conter'
 
 function CounterWidget() {
-  const [number, setNumber] = useState(0)
+  const [number, setNumber] = useRecoilState(counterState)
 
   return (
     <div className="flex items-center justify-center">

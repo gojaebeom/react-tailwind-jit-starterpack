@@ -1,4 +1,4 @@
-import DefaultLayout from '../layouts/DefaultLayout'
+import DefaultLayout from 'components/containers/DefaultLayout'
 
 function About() {
   return (

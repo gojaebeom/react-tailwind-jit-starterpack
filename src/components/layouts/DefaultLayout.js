@@ -1,4 +1,4 @@
-import Header from '../widgets/statelessWidgets/Header'
+import { Header } from "components/layouts";
 
 function DefaultLayout(props) {
   return (
@@ -6,7 +6,7 @@ function DefaultLayout(props) {
       <Header />
       <section className="p-4">{props.children}</section>
     </div>
-  )
+  );
 }
 
-export default DefaultLayout
+export default DefaultLayout;

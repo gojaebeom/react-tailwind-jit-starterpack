@@ -1,9 +1,7 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 
-import About from "pages/About";
-import Counter from "pages/Counter";
-import Home from "pages/Home";
+import { Home, About, Counter } from "pages";
 
 function App() {
   const route = useRoutes([
